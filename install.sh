@@ -22,7 +22,7 @@ sudo apt install -y meson picom libxext-dev libxcb1-dev libxcb-damage0-dev libxc
 
 # Instalamos paquetes adionales
 
-sudo apt install -y kitty feh scrot scrub rofi xclip bat locate ranger wmname acpi bspwm sxhkd imagemagick cmatrix zenity neofetch
+sudo apt install -y kitty feh scrot scrub rofi xclip bat locate ranger wmname acpi bspwm sxhkd imagemagick cmatrix zenity neofetch libnotify-bin
 
 
 # Creando carpeta de Reposistorios
@@ -142,4 +142,6 @@ echo "Selecciona un theme en el theme selector"
 echo "Selecciona un theme en el theme selector"
 
 
-notify-send "BSPWM INSTALADO"
+if command -v notify-send >/dev/null 2>&1; then
+	notify-send "BSPWM INSTALADO"
+fi
