@@ -18,7 +18,7 @@ sudo apt install -y polybar cmake cmake-data pkg-config python3-sphinx libcairo2
 
 # Dependencias de Picom
 
-sudo apt install -y meson picom libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3 libpcre3-dev
+sudo apt install -y meson ninja-build picom libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3 libpcre3-dev
 
 # Instalamos paquetes adionales
 
@@ -57,10 +57,11 @@ cmake ..
 make -j$(nproc)
 sudo make install
 
-# Instalando Picom
+# Instalando Picom (meson + ninja-build must be on PATH; ninja is from package ninja-build)
 
 cd ~/github/picom
 git submodule update --init --recursive
+sudo apt install -y meson ninja-build
 meson --buildtype=release . build
 ninja -C build
 sudo ninja -C build install

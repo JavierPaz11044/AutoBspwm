@@ -5,7 +5,29 @@ user=$(whoami)
 
 opciones()
 {
-    zenity --list --title="Selecciona una opción" --column="Elige una opción: " "$@"
+	local choices=("$@")
+	local z
+	# Zenity only works with a graphical session (X11 or Wayland)
+	if command -v zenity >/dev/null 2>&1 && { [[ -n "${DISPLAY:-}" ]] || [[ -n "${WAYLAND_DISPLAY:-}" ]]; }; then
+		if z=$(zenity --list --title="Selecciona una opción" --column="Elige una opción: " "${choices[@]}" 2>/dev/null) && [[ -n "$z" ]]; then
+			echo "$z"
+			return
+		fi
+	fi
+	# TTY, SSH without X11 forwarding, or zenity failed — text menu
+	echo "Sin ventana grafica (o zenity fallo). Elige tema por numero:" >&2
+	local i=1
+	for c in "${choices[@]}"; do
+		echo "  $i) $c" >&2
+		i=$((i + 1))
+	done
+	read -r -p "Numero (1-${#choices[@]}, Enter=1): " pick
+	[[ -z "${pick// }" ]] && pick=1
+	if [[ "$pick" =~ ^[0-9]+$ ]] && (( pick >= 1 && pick <= ${#choices[@]} )); then
+		echo "${choices[$((pick - 1))]}"
+	else
+		echo ""
+	fi
 }
 
 Pacman_theme()
