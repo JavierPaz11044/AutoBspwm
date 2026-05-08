@@ -22,7 +22,20 @@ sudo apt install -y meson picom libxext-dev libxcb1-dev libxcb-damage0-dev libxc
 
 # Instalamos paquetes adionales
 
-sudo apt install -y kitty feh scrot scrub rofi xclip bat locate ranger wmname acpi bspwm sxhkd imagemagick cmatrix zenity neofetch libnotify-bin
+sudo apt install -y kitty feh scrot scrub rofi xclip bat locate ranger wmname acpi bspwm sxhkd imagemagick cmatrix zenity neofetch libnotify-bin lightdm lightdm-gtk-greeter
+
+# LightDM reads /usr/share/xsessions/*.desktop — ensure BSPWM is listed if the package skipped it
+BSPWM_XSESSION="/usr/share/xsessions/bspwm.desktop"
+if [[ ! -f "$BSPWM_XSESSION" ]]; then
+	sudo tee "$BSPWM_XSESSION" >/dev/null <<'EOF'
+[Desktop Entry]
+Name=bspwm
+Comment=Binary space partitioning window manager
+TryExec=bspwm
+Exec=bspwm
+Type=XSession
+EOF
+fi
 
 
 # Creando carpeta de Reposistorios
@@ -140,6 +153,9 @@ echo "Selecciona un theme en el theme selector"
 echo "Selecciona un theme en el theme selector"
 echo "Selecciona un theme en el theme selector"
 echo "Selecciona un theme en el theme selector"
+echo ""
+echo "LightDM: elige sesion bspwm en el menu antes de iniciar (engranaje o lista de escritorios)."
+echo "Si otro gestor es el predeterminado: sudo dpkg-reconfigure lightdm"
 
 
 if command -v notify-send >/dev/null 2>&1; then
