@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-# Mostrar fastfetch al abrir Kitty
-/usr/bin/fastfetch -c "$HOME/.config/fastfetch/config.jsonc" || true
+# Show system info on Kitty startup (neofetch; Debian-friendly)
+if command -v neofetch >/dev/null 2>&1; then
+	NEOFETCH_CONF="${HOME}/.config/neofetch/config.conf"
+	if [[ -r "${NEOFETCH_CONF}" ]]; then
+		neofetch --config "${NEOFETCH_CONF}" || true
+	else
+		neofetch || true
+	fi
+fi
 
-# Lanzar Zsh interactivo con Powerlevel10k
+# Launch interactive Zsh with Powerlevel10k
 exec /usr/bin/zsh -i
-

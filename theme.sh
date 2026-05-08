@@ -329,7 +329,6 @@ Zeneapp_theme()
 	sudo chown $user:$user ~/.config/bin/* 
 	echo "config setup"
     rofi-theme-selector
-    sudo 
     echo "Zeneapp theme instalado"
     kill -9 -1
 }
