@@ -10,7 +10,7 @@ ruta=$(pwd)
 
 sudo apt update
 
-sudo apt install -y xorg lightdm bspwm sxhkd
+sudo apt install -y xorg lightdm bspwm sxhkd kitty 
 
 if ! command -v bspwm >/dev/null 2>&1 || ! command -v sxhkd >/dev/null 2>&1; then
 
