@@ -54,12 +54,12 @@ EOF
 
 fi
 #Create folder neccesary for the config files
-mkdir -p .config
+mkdir -p ~/.config
 
 #Laod condig to sxhkd and bspwm
 
-mv ./Config/bspwm ~/.config/
-mv ./Config/sxhkd ~/.config/
+cp ./Config/bspwm ~/.config/bspwm -r
+cp ./Config/sxhkd ~/.config/sxhkd -r
 
 # Creando carpeta de Reposistorios
 
