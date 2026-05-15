@@ -5,8 +5,7 @@ if [ "$(whoami)" == "root" ]; then
 fi
 
 ruta=$(pwd)
-
-# WM + X first: LightDM sessions need bspwm/sxhkd on disk before anything else fails below
+ 
 
 sudo apt update
 
@@ -54,7 +53,13 @@ Type=XSession
 EOF
 
 fi
+#Create folder neccesary for the config files
+mkdir -p .config
 
+#Laod condig to sxhkd and bspwm
+
+mv ./Config/bspwm ~/.config/
+mv ./Config/sxhkd ~/.config/
 
 # Creando carpeta de Reposistorios
 
