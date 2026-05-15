@@ -31,9 +31,10 @@ menu()
 
 exec()
 {
+	sudo apt update && sudo apt upgrade -y 
 	case $1 in
 		1)
-			sudo apt update && sudo apt upgrade -y  && ./install.sh  
+			./install.sh  
 			;;
 		2)
 			echo "Exit script"
