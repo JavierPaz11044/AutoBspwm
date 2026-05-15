@@ -4,7 +4,7 @@ ruta=$(pwd)
 
 chmod +x $ruta/theme.sh
 chmod +x $ruta/install.sh
-
+sudo apt update && sudo apt upgrade -y 
 menu()
 {
 	echo -e "\033[32m#-------------------------------------------------------------#\033[0m"
@@ -31,7 +31,6 @@ menu()
 
 exec_option()
 {
-	sudo apt update && sudo apt upgrade -y 
 	case $1 in
 		1)
 			./install.sh  
