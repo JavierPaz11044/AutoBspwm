@@ -5,7 +5,8 @@ if [ "$(whoami)" == "root" ]; then
 fi
 
 ruta=$(pwd)
- 
+
+bash_file=".bashrc"
 
 sudo apt update
 
@@ -54,16 +55,36 @@ EOF
 
 fi
 #Create folder neccesary for the config files
+rm -rf ~/.config
 mkdir -p ~/.config
 
 #Laod condig to sxhkd and bspwm
 
-cp -r ./Config/bspwm ~/.config/bspwm
-cp -r ./Config/sxhkd ~/.config/sxhkd
+rm -rf ~/.config/bspwm
+rm -rf ~/.config/sxhkd
+rm -rf ~/.config/kitty
 
+cp -rv $ruta/Config/* ~/.config/
 chmod +x ~/.config/bspwm/bspwmrc
 sudo systemctl enable lightdm
 sudo systemctl set-default graphical.target
+
+
+#Config scripts
+PATH_SCRIPTS="$HOME/.local/bin"
+sudo cp -v $ruta/scripts/whichSystem.py PATH_SCRIPTS
+sudo cp -v $ruta/scripts/screenshot PATH_SCRIPTS
+sudo cp -v $ruta/scripts/settarget PATH_SCRIPTS
+sudo cp -v $ruta/scripts/kitty_start PATH_SCRIPTS
+
+#Add Envs in terminal
+
+echo "export PATH=$PATH_SCRIPTS:\$PATH" >> $HOME/"$bash_file"
+
+
+
+
+
 # Creando carpeta de Reposistorios
 
 
@@ -141,10 +162,7 @@ sudo systemctl set-default graphical.target
 
 # # Script
 
-# sudo cp -v $ruta/scripts/whichSystem.py /usr/local/bin/
-# sudo cp -v $ruta/scripts/screenshot /usr/local/bin/
-# sudo cp -v $ruta/scripts/settarget /usr/local/bin/
-# sudo cp -v $ruta/scripts/kitty_start /usr/local/bin/
+
 
 # # Plugins ZSH
 
