@@ -29,7 +29,7 @@ menu()
 	echo -e "\033[32m#-------------------------------------------------------------#\033[0m"
 }
 
-exec()
+exec_option()
 {
 	sudo apt update && sudo apt upgrade -y 
 	case $1 in
@@ -49,5 +49,5 @@ exec()
 while true; do
 	menu
 	read -p "> " opcion
-	exec $opcion
+	exec_option $opcion
 done
