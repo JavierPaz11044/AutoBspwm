@@ -70,8 +70,9 @@ sudo systemctl enable lightdm
 sudo systemctl set-default graphical.target
 
 
-#Config scripts
+#Config scripts 
 PATH_SCRIPTS="$HOME/.local/bin"
+mkdir -p $PATH_SCRIPTS
 sudo cp -v $ruta/scripts/whichSystem.py PATH_SCRIPTS
 sudo cp -v $ruta/scripts/screenshot PATH_SCRIPTS
 sudo cp -v $ruta/scripts/settarget PATH_SCRIPTS
