@@ -33,7 +33,7 @@ exec()
 {
 	case $1 in
 		1)
-			./install.sh
+			sudo apt update && sudo apt upgrade -y  && ./install.sh  
 			;;
 		2)
 			echo "Exit script"
