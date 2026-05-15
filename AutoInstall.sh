@@ -33,7 +33,7 @@ exec()
 {
 	case $1 in
 		1)
-			sudo apt update && sudo apt upgrade -y && sudo apt install -y zenity && ./install.sh && ./theme.sh
+			./install.sh
 			;;
 		2)
 			echo "Exit script"
