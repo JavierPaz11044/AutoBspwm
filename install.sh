@@ -58,10 +58,14 @@ mkdir -p ~/.config
 
 #Laod condig to sxhkd and bspwm
 
-cp ./Config/bspwm ~/.config/bspwm -r
-cp ./Config/sxhkd ~/.config/sxhkd -r
+cp -r ./Config/bspwm ~/.config/bspwm
+cp -r ./Config/sxhkd ~/.config/sxhkd
 
+chmod +x ~/.config/bspwm/bspwmrc
+sudo systemctl enable lightdm
+sudo systemctl set-default graphical.target
 # Creando carpeta de Reposistorios
+
 
 # mkdir ~/github
 
