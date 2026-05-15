@@ -2,9 +2,11 @@
 
 ruta=$(pwd)
 
-chmod +x $ruta/theme.sh
-chmod +x $ruta/install.sh
+sudo timedatectl set-timezone America/Guayaquil
+sudo timedatectl set-ntp true 
 sudo apt update && sudo apt upgrade -y 
+chmod +x $ruta/theme.sh
+chmod +x $ruta/install.sh 
 menu()
 {
 	echo -e "\033[32m#-------------------------------------------------------------#\033[0m"
